@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from mExApZ.view import *
 
 #设置管理界面title和header#
 admin.site.site_header = 'mExApZ管理'
@@ -22,4 +23,5 @@ admin.site.site_title = 'mExApZ管理'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', weixinValid),
 ]
