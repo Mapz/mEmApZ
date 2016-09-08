@@ -2,10 +2,10 @@ from django.http import HttpResponse
 import datetime
 from django.shortcuts import render_to_response
 from mExApZ.utils import weixinValidDeveloper
-import logging
+# import logging
 
-import logging
-logger = logging.getLogger('mEmApZ')
+# import logging
+# logger = logging.getLogger('mEmApZ')
 
 
 def weixinValid(request):
@@ -15,10 +15,10 @@ def weixinValid(request):
 		nonce = request.GET['nonce']
 		signiture = request.GET['signiture']
 		echostr = request.GET['echostr']
-		logger.info("timestamp:%s",timestamp)
-		logger.info("nonce:%s",nonce)
-		logger.info("signiture:%s",signiture)
-		logger.info("echostr:%s",echostr)
+		# logger.info("timestamp:%s",timestamp)
+		# logger.info("nonce:%s",nonce)
+		# logger.info("signiture:%s",signiture)
+		# logger.info("echostr:%s",echostr)
 		if (not timestamp) or (not nonce) or (not signiture):
 			error = True
 		else:
