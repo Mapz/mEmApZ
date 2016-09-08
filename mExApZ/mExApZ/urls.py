@@ -23,5 +23,5 @@ admin.site.site_title = 'mExApZ管理'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', weixinValid),
+    url(r'^wxValid/$', weixinValid),
 ]
