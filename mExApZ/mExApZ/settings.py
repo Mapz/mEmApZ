@@ -142,7 +142,7 @@ LOGGING = {
         'default': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','all.log'), #或者直接写路径：'c:\logs\all.log',
+            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','all.log'), 
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
@@ -155,7 +155,7 @@ LOGGING = {
         'request_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','script.log'), #或者直接写路径：'filename':'c:\logs\request.log''  
+            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','script.log'), 
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
@@ -163,7 +163,7 @@ LOGGING = {
         'scprits_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','script.log'), #或者直接写路径：'filename':'c:\logs\script.log'
+            'filename': os.path.join(os.path.dirname(__file__)+'/logs/','script.log'), 
             'maxBytes': 1024*1024*5, # 5 MB
             'backupCount': 5,
             'formatter':'standard',
@@ -180,7 +180,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False
         },
-        'mEmApZ': { # 脚本专用日志
+        'mEmApZ': { 
             'handlers': ['scprits_handler'],
             'level': 'INFO',
             'propagate': False

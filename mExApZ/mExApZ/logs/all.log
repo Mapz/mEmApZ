@@ -3,3 +3,8 @@
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
             ORDER BY name; args=None
 2016-09-08 18:08:35,487 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+2016-09-08 18:21:49,903 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+2016-09-08 18:21:49,906 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
