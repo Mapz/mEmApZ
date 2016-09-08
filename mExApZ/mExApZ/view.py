@@ -28,7 +28,7 @@ def weixinValid(request):
 			else:
 				return HttpResponse('not valid')
 
-	logger.info("param not right")
+	# logger.info("param not right")
 	print("param not right")
 
 	return HttpResponse('param not right')
