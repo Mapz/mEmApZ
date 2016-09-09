@@ -13,16 +13,16 @@ def weixinValid(request):
 	if ('timestamp' in request.GET) and ('nonce' in request.GET):
 		timestamp = request.GET['timestamp']
 		nonce = request.GET['nonce']
-		signiture = request.GET['signiture']
+		signature = request.GET['signature']
 		echostr = request.GET['echostr']
 		logger.info("timestamp:%s",timestamp)
 		logger.info("nonce:%s",nonce)
-		logger.info("signiture:%s",signiture)
+		logger.info("signature:%s",signature)
 		logger.info("echostr:%s",echostr)
-		if (not timestamp) or (not nonce) or (not signiture):
+		if (not timestamp) or (not nonce) or (not signature):
 			error = True
 		else:
-			valid = weixinValidDeveloper(timestamp , nonce , signiture)
+			valid = weixinValidDeveloper(timestamp , nonce , signature)
 			if valid:
 				return HttpResponse(echostr)
 			else:

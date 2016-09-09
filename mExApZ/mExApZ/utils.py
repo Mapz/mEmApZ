@@ -2,7 +2,7 @@ import hashlib
 
 token = "huihuiAiyaya"
 
-def weixinValidDeveloper(timestamp , nonce , signiture):
+def weixinValidDeveloper(timestamp , nonce , signature):
 	strList = [timestamp,token,nonce]
 	strList = sorted(strList)
 	strNew = ''
@@ -12,6 +12,6 @@ def weixinValidDeveloper(timestamp , nonce , signiture):
 	sha1Ret = hashlib.sha1(strNew.encode('utf-8')).hexdigest()
 
 	print('sha1Ret:',sha1Ret)
-	print('signiture:',signiture)
+	print('signature:',signature)
 
-	return signiture == sha1Ret
+	return signature == sha1Ret
