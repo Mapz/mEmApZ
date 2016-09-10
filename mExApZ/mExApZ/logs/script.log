@@ -22,3 +22,39 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 85, in __getitem__
     raise MultiValueDictKeyError(repr(key))
 django.utils.datastructures.MultiValueDictKeyError: "'signature'"
+2016-09-10 16:54:05,153 [Thread-2:123145312813056] [django.request:284] [ERROR]- Internal Server Error: /wxValidSafe/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 83, in __getitem__
+    list_ = super(MultiValueDict, self).__getitem__(key)
+KeyError: 'signature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mapzchen/Git_Folder/mEmApZ/mExApZ/mExApZ/view.py", line 50, in weixinValidSafe
+    signature = request.GET['signature']
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 85, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+django.utils.datastructures.MultiValueDictKeyError: "'signature'"
+2016-09-10 16:54:12,447 [Thread-3:123145312813056] [django.request:284] [ERROR]- Internal Server Error: /wxValidSafe/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 83, in __getitem__
+    list_ = super(MultiValueDict, self).__getitem__(key)
+KeyError: 'encrypt_type'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mapzchen/Git_Folder/mEmApZ/mExApZ/mExApZ/view.py", line 52, in weixinValidSafe
+    encrypt_type = request.GET['encrypt_type']
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 85, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+django.utils.datastructures.MultiValueDictKeyError: "'encrypt_type'"

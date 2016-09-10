@@ -128,3 +128,13 @@ django.template.base.VariableDoesNotExist: Failed lookup for key [name] in '<Reg
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
             ORDER BY name; args=None
 2016-09-10 16:44:45,980 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+2016-09-10 16:53:53,092 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+2016-09-10 16:53:53,095 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+2016-09-10 16:54:25,114 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+2016-09-10 16:54:25,117 [Dummy-1:123145307557888] [django.db.backends:89] [DEBUG]- (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
