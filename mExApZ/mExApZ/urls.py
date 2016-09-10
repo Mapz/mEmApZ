@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+#-*- encoding:utf-8 -*-
+
 """mExApZ URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -24,4 +27,5 @@ admin.site.site_title = 'mExApZ管理'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^wxValid/$', weixinValid),
+    url(r'^wxValidSafe/$', weixinValid),
 ]

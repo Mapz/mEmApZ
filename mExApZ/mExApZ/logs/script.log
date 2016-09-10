@@ -2,3 +2,23 @@
 2016-09-08 19:51:37,725 [Thread-2:123145312813056] [mEmApZ:19] [INFO]- nonce:asdgasdfad
 2016-09-08 19:51:37,725 [Thread-2:123145312813056] [mEmApZ:20] [INFO]- signiture:1234
 2016-09-08 19:51:37,726 [Thread-2:123145312813056] [mEmApZ:21] [INFO]- echostr:sdfasdgasdf
+2016-09-10 16:35:11,790 [Thread-2:123145312813056] [django.request:182] [WARNING]- Not Found: /myPage/
+2016-09-10 16:35:12,182 [Thread-3:123145312813056] [django.request:182] [WARNING]- Not Found: /favicon.ico
+2016-09-10 16:35:25,417 [Thread-4:123145312813056] [django.request:284] [ERROR]- Internal Server Error: /wxValidSafe/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 83, in __getitem__
+    list_ = super(MultiValueDict, self).__getitem__(key)
+KeyError: 'signature'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/site-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/mapzchen/Git_Folder/mEmApZ/mExApZ/mExApZ/view.py", line 25, in weixinValid
+    signature = request.GET['signature']
+  File "/usr/local/lib/python3.5/site-packages/django/utils/datastructures.py", line 85, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+django.utils.datastructures.MultiValueDictKeyError: "'signature'"

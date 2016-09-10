@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+#-*- encoding:utf-8 -*-
 import hashlib
+from wechat_sdk import WechatBasic
 
 token = "huihuiAiyaya"
+encrypt_key = "hW1KgvdaAYyP3ATPM1TQU9kzXtVeApya8AnXanS5TEe"
+app_id = "wxd3de8e894c7be16a"
 
 def weixinValidDeveloper(timestamp , nonce , signature):
 	strList = [timestamp,token,nonce]
