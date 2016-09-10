@@ -45,13 +45,16 @@ def weixinValid(request):
 def weixinValidSafe(request):
 	error = False
 	if ('timestamp' in request.GET) and ('nonce' in request.GET):
+		
+		logger.info("request.GET:%s",request.GET)
+
 		timestamp = request.GET['timestamp']
 		nonce = request.GET['nonce']
 		signature = request.GET['signature']
 		echostr = request.GET['echostr']
 		encrypt_type = request.GET['encrypt_type']
 		msg_signature = request.GET['msg_signature']
-		logger.info("request.GET:%s",request.GET)
+		
 		if (not timestamp) or (not nonce) or (not signature):
 			return HttpResponse('param not right')
 		elif encrypt_type == "aes":
