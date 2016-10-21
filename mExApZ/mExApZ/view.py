@@ -2,81 +2,56 @@
 #-*- encoding:utf-8 -*-
 
 from django.http import HttpResponse
-import datetime
 from django.shortcuts import render_to_response
-from mExApZ.utils.utils import weixinValidDeveloper
-import mExApZ.utils.WXBizMsgCrypt
+from django.utils.encoding import smart_str
+
+import datetime
 import logging
-from mExApZ.utils.utils import token
-from mExApZ.utils.utils import encrypt_key
-from mExApZ.utils.utils import app_id
+import hashlib
+import json
+
+import mExApZ.utils.WXBizMsgCrypt
+
+from lxml import etree
 
 
+from mExApZ.utils.utils import WEIXIN_TOKEN
+from mExApZ.utils.utils import ENCRYPT_KEY
+from mExApZ.utils.utils import APP_ID
 
-# Get an instance of a logger
 logger = logging.getLogger('mEmApZ')
 
-
-def weixinValid(request):
-	error = False
-	if ('timestamp' in request.GET) and ('nonce' in request.GET):
-		timestamp = request.GET['timestamp']
-		nonce = request.GET['nonce']
-		signature = request.GET['signature']
-		echostr = request.GET['echostr']
-		logger.info("timestamp:%s",timestamp)
-		logger.info("nonce:%s",nonce)
-		logger.info("signature:%s",signature)
-		logger.info("echostr:%s",echostr)
-		if (not timestamp) or (not nonce) or (not signature):
-			return HttpResponse('param not right')
+def weixin_main(request):
+	"""
+	所有的消息都会先进入这个函数进行处理，函数包含两个功能，
+	微信接入验证是GET方法，
+	微信正常的收发消息是用POST方法。
+	"""
+	if request.method == "GET":
+		logger.info("Get params:%s" % (request.GET))
+		signature = request.GET.get("signature", None)
+		timestamp = request.GET.get("timestamp", None)
+		nonce = request.GET.get("nonce", None)
+		echostr = request.GET.get("echostr", None)
+		tmp_list = [WEIXIN_TOKEN, timestamp, nonce]
+		tmp_list.sort()
+		tmp_str = "%s%s%s" % tuple(tmp_list)
+		tmp_str = hashlib.sha1(tmp_str).hexdigest()
+		if tmp_str == signature:
+			return HttpResponse(echostr)
 		else:
-			valid = weixinValidDeveloper(timestamp , nonce , signature)
-			if valid:
-				return HttpResponse(echostr)
-			else:
-				return HttpResponse('not valid')
+			return HttpResponse("weixin  index")
+	else:
+		logger.info("POST -- GET params:%s" % (request.GET))
+		logger.info("POST -- GET request.body:%s" % (request.body))
+		xml_str = smart_str(request.body)
+		request_xml = etree.fromstring(xml_str)
+		# response_xml = auto_reply_main(request_xml)# 修改这里
+		return HttpResponse(response_xml)
+	pass
 
-	logger.info("param not right")
-	print("param not right")
 
-	return HttpResponse('param not right')
 
-def weixinValidSafe(request):
-	error = False
-	if ('timestamp' in request.GET) and ('nonce' in request.GET):
-		
-		logger.info("request.GET:%s",request.GET)
-
-		timestamp = request.GET['timestamp']
-		nonce = request.GET['nonce']
-		signature = request.GET['signature']
-		echostr = request.GET['echostr']
-		encrypt_type = request.GET['encrypt_type']
-		msg_signature = request.GET['msg_signature']
-		
-		if (not timestamp) or (not nonce) or (not signature):
-			return HttpResponse('param not right')
-		elif encrypt_type == "aes":
-			decrypt_test = WXBizMsgCrypt(token,encrypt_key,app_id)
-			ret ,decryp_xml = decrypt_test.DecryptMsg(from_xml, msg_signature, timestamp, nonce)
-			print(ret,decryp_xml)
-			logger.info("ret:%s\ndecryp_xml:%s" % (ret,decryp_xml))
-			if ret == 0 :
-				return HttpResponse(echostr)
-			else:
-				return HttpResponse('not valid') 
-		else:
-			valid = weixinValidDeveloper(timestamp , nonce , signature)
-			if valid:
-				return HttpResponse(echostr)
-			else:
-				return HttpResponse('not valid')
-
-	logger.info("param not right")
-	print("param not right")
-
-	return HttpResponse('param not right')
 
 
 
